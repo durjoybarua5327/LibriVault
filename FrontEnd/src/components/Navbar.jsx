@@ -10,7 +10,7 @@ function Navbar() {
         </>
     )
     return (
-        <div className='w-'>
+        <div className='container  md:px-20 px-4'>
             <div className="navbar bg-base-100 shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
