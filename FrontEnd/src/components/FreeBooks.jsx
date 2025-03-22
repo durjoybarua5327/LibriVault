@@ -36,7 +36,7 @@ function FreeBooks() {
               <img
                 src={category.src}
                 alt={category.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-md"
               />
             </div>
             <h3 className="text-center mt-4 text-xl">{category.name}</h3>
