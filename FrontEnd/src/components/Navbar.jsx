@@ -10,7 +10,7 @@ function Navbar() {
         </>
     )
     return (
-        <div className='container  '>
+        <div className='container sticky top-0 z-3'>
             <div className="md:px-20 px-4 navbar bg-base-100 shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -57,8 +57,8 @@ function Navbar() {
                         </svg>
                     </label>
                     </div>
-                    <div className='login text-md'>
-                        <a className="bg-black text-white py-2 px-3 rounded-md hover:bg-slate-800 duration-300">Login</a>
+                    <div className='login text-sm'>
+                        <a className="bg-black text-white py-2 px-4 rounded-md hover:bg-slate-800 duration-300">Login</a>
                     </div>
                 </div>
             </div>
