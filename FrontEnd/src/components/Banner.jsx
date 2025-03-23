@@ -19,13 +19,13 @@ function Banner() {
       <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 py-8 md:py-16 flex flex-col md:flex-row">
         <div className="left w-full md:w-1/2 order-1 md:order-1 mt-4 md:mt-12">
           <div className="space-y-4 md:space-y-6">
-            <h1 className="sm:block text-3xl md:text-5xl font-bold text-gray-900 leading-snug md:leading-tight ">
-              Welcome to <br className="hidden md:block" />
+            <h1 className="dark:text-[#9c9999] sm:block text-3xl md:text-5xl font-bold text-gray-900 leading-snug md:leading-tight ">
+              Welcome to <br className="hidden md:block  " />
               <span className="block bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text ">
                 Libri Vault
               </span>
             </h1>
-            <p className="text-gray-600 text-base md:text-lg">
+            <p className="text-gray-600 text-base md:text-lg dark:text-[#9a9898]">
               Explore books across all genres. Download instantly
               and start reading within seconds.
             </p>
@@ -58,9 +58,9 @@ function Banner() {
         </div>
 
         <div className="w-full md:w-1/2 order-2 md:order-2 mt-8 md:mt-0">
-          <div className="relative md:-right-8">
-            <div className="bg-gradient-to-r from-blue-100 to-purple-100 h-64 md:h-96 rounded-2xl shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-              <div className=" relative w-full h-full group" >
+          <div className="relative md:-right-8 ">
+            <div className=" bg-gradient-to-r from-blue-100 to-purple-100 h-64 md:h-96 rounded-2xl shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              <div className=" relative w-full h-full group " >
                 <img
                   src={subjectGroups[currentSubjectIndex].src}
                   alt={subjectGroups[currentSubjectIndex].name}

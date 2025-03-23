@@ -4,32 +4,30 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 function Navbar() {
-    const [theme, setTheme]= useState(localStorage.getItem("theme")?localStorage.getItem("theme"):"light" )
+    const [theme, setTheme]= useState(localStorage.getItem("theme")?localStorage.getItem("theme"):"dark" )
     const element = document.documentElement
 
     useEffect(()=>{
         if(theme==='dark'){
             element.classList.add('dark')
             localStorage.setItem("theme", "dark")
-            document.body.classList.add('dark')
         }
         else{
             element.classList.remove('dark')
             localStorage.setItem("theme", "light")
-            document.body.classList.remove('dark')
         }
     },[theme])
     const navItems = (
         <>
-             <li><Link to="/">Home</Link></li>
-            <li><Link to="/Premium">Premium</Link></li>
-            <li><Link to="/Contact">Contact</Link></li>
-            <li><Link to="/About">About</Link></li>
+             <li className='dark:hover:bg-[#8f8d8d] rounded-md transition-all duration-300 hover:scale-105'><Link to="/">Home</Link></li >
+            <li className='dark:hover:bg-[#8f8d8d] rounded-md transition-all duration-300 hover:scale-105'><Link to="/Premium">Premium</Link></li >
+            <li className='dark:hover:bg-[#8f8d8d] rounded-md transition-all duration-300 hover:scale-105'><Link to="/Contact">Contact</Link></li >
+            <li className='dark:hover:bg-[#8f8d8d] rounded-md transition-all duration-300 hover:scale-105'><Link to="/About">About</Link></li >
         </>
     )
     return (
-        <div className='container sticky top-0 z-3'>
-            <div className="md:px-20 px-4 navbar bg-base-100 shadow-sm">
+        <div className='container sticky top-0 z-3 '>
+            <div className="md:px-20 px-4 navbar bg-base-100 shadow-sm dark:shadow-[#4e4d4d] dark:bg-black dark:text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,8 +77,8 @@ function Navbar() {
                         </svg>
                     </label>
                     </div>
-                    <div className='login text-sm'>
-                        <a className="bg-black text-white py-2 px-4 rounded-md hover:bg-slate-800 duration-300">Login</a>
+                    <div className='login text-sm hover:scale-105'>
+                        <a className="bg-black text-white dark:hover:bg-[#aca7a7] dark:bg-white dark:text-black py-2 px-4 rounded-md hover:bg-slate-800 duration-300">Login</a>
                     </div>
                 </div>
             </div>
