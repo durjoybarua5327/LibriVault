@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Login from './Login';
 
 function Navbar() {
     const storedTheme = localStorage.getItem("theme") || "dark";
@@ -76,9 +77,10 @@ function Navbar() {
                             </svg>
                         </label>
                     </div>
-                    <div className='login text-sm hover:scale-105' on>
+                    <div className='login text-sm hover:scale-105' onClick={()=>document.getElementById('my_modal_3').showModal()} >
                         <a className="bg-black text-white dark:hover:bg-[#aca7a7] dark:bg-white dark:text-black py-2 px-4 rounded-md hover:bg-slate-800 duration-300">Login</a>
                     </div>
+                    <Login/>
                 </div>
             </div>
         </div>
