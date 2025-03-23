@@ -30,7 +30,7 @@ function FreeBooks() {
         {visibleCategories.map((category, index) => (
           <div
             key={index}
-            className="bg-white shadow-md rounded-md p-4 cursor-pointer transform transition-all duration-300 ease-in-out hover:bg-blue-200"
+            className="bg-white shadow-md rounded-md p-4 cursor-pointer transform transition-all ease-in-out hover:bg-blue-200 hover:scale-105 duration-300"
           >
             <div className="overflow-hidden h-60">
               <img
