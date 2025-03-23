@@ -8,7 +8,7 @@ function Navbar() {
     const element = document.documentElement
 
     useEffect(()=>{
-        if(theme=='dark'){
+        if(theme==='dark'){
             element.classList.add('dark')
             localStorage.setItem("theme", "dark")
             document.body.classList.add('dark')
