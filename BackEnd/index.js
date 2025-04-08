@@ -7,8 +7,6 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3001
 const URI = process.env.MongoDburi
-
-
 try {
     mongoose.connect(URI, {})
 } catch (error) {
