@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function CategoryBooks() {
   const { categoryName } = useParams();
@@ -45,7 +47,9 @@ function CategoryBooks() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <>
+    <Navbar/>
+    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -97,6 +101,8 @@ function CategoryBooks() {
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
