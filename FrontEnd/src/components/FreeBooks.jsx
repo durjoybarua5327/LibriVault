@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { useNavigate } from 'react-router-dom'; 
 function FreeBooks() {
   const [showAll, setShowAll] = useState(false);
-
+  const navigate = useNavigate();
   const bookscategory = [
     { name: 'Body, Mind & Spirit', src: './src/pictures/BodyMindSpirit.jpg' },
     { name: 'Business', src: './src/pictures/business.jpg' },
@@ -18,8 +18,11 @@ function FreeBooks() {
     { name: 'Science Fiction', src: './src/pictures/science_fiction.jpeg' },
     { name: 'Thrillers', src: './src/pictures/thriller.jpeg' },
   ];
-
   const visibleCategories = showAll ? bookscategory : bookscategory.slice(0, 8);
+
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  };
 
   return (
     <div className="mx-10">
@@ -30,7 +33,8 @@ function FreeBooks() {
         {visibleCategories.map((category, index) => (
           <div
             key={index}
-            className="dark:bg-[#3e3e3e]  dark:hover:bg-[#797878] bg-white shadow-md rounded-md p-4 cursor-pointer transform transition-all ease-in-out hover:bg-blue-200 hover:scale-105 duration-300"
+            className="dark:bg-[#3e3e3e] dark:hover:bg-[#797878] bg-white shadow-md rounded-md p-4 cursor-pointer transform transition-all ease-in-out hover:bg-blue-200 hover:scale-105 duration-300"
+            onClick={() => handleCategoryClick(category.name)} 
           >
             <div className="overflow-hidden h-60">
               <img
@@ -43,7 +47,6 @@ function FreeBooks() {
           </div>
         ))}
       </div>
-
 
       {bookscategory.length > 8 && (
         <div className="text-center mt-4">

@@ -4,6 +4,7 @@ import Premium from "./Premium/Premium";4
 import Contact from "./Contact/Contact";
 import About from "./About/About";
 import SignUp from "./components/SignUp";
+import CategoryBooks from "./Books/CategoryBooks";
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/About" element={<About />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/category/:categoryName" element={<CategoryBooks />} />
 
       </Routes>
     </Router>
