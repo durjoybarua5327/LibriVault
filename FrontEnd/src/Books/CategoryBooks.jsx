@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useEffect } from 'react';
 
-// Mock data with categories
+
 const allBooks = [
   {
     id: 1,
@@ -14,8 +14,7 @@ const allBooks = [
     category: 'Business',
     cover: 'https://m.media-amazon.com/images/I/71g2ednj0JL._AC_UF1000,1000_QL80_.jpg',
     pdfUrl: '#',
-    pages: 256,
-    rating: 4.5
+    
   },
   {
     id: 2,
@@ -24,8 +23,6 @@ const allBooks = [
     category: 'Health & Fitness',
     cover: 'https://m.media-amazon.com/images/I/91bYsX41DVL._AC_UF1000,1000_QL80_.jpg',
     pdfUrl: '#',
-    pages: 320,
-    rating: 4.7
   },
   {
     id: 3,
@@ -33,9 +30,7 @@ const allBooks = [
     author: 'Cal Newport',
     category: 'Business',
     cover: 'https://m.media-amazon.com/images/I/71m+Qtq+HUL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#',
-    pages: 304,
-    rating: 4.6
+    pdfUrl: '#'
   },
   {
     id: 4,
@@ -44,8 +39,6 @@ const allBooks = [
     category: 'Business',
     cover: 'https://m.media-amazon.com/images/I/71aG+xDKSYL._AC_UF1000,1000_QL80_.jpg',
     pdfUrl: '#',
-    pages: 452,
-    rating: 4.7
   },
   {
     id: 5,
@@ -53,20 +46,18 @@ const allBooks = [
     author: 'Eckhart Tolle',
     category: 'Body, Mind & Spirit',
     cover: 'https://m.media-amazon.com/images/I/71TZn3Zq5sL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#',
-    pages: 236,
-    rating: 4.6
+    pdfUrl: '#'
   },
   // Add more books with appropriate categories
 ];
 
 function CategoryBooks() {
   const { categoryName } = useParams();
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [categoryName]);
-  // Filter books by the selected category
+  
   const books = allBooks.filter(book => 
     book.category.toLowerCase() === categoryName.toLowerCase()
   );
@@ -74,10 +65,10 @@ function CategoryBooks() {
   return (
     <>
       <Navbar/>
-      <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 dark:bg-black dark:text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl dark:text-white">
               {decodeURIComponent(categoryName)} Books
             </h1>
             <p className="mt-3 text-xl text-gray-500">
@@ -85,9 +76,9 @@ function CategoryBooks() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
             {books.map((book) => (
-              <div key={book.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <div key={book.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-[#414040] ">
                 <div className="h-48 overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
@@ -95,9 +86,9 @@ function CategoryBooks() {
                     alt={book.title}
                   />
                 </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{book.title}</h3>
-                  <p className="mt-1 text-sm text-gray-600">by {book.author}</p>
+                <div className="p-4 ">
+                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 dark:text-[#fafafa]">{book.title}</h3>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-white">by {book.author}</p>
                   
                   <div className="mt-4">
                     <a
