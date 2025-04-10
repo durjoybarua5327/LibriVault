@@ -15,6 +15,6 @@ const bookSchema = new mongoose.Schema({
   ]
 });
 
-const BookCategory = mongoose.model("BookCategory", bookSchema);
+const BookCategory = mongoose.model("Book", bookSchema);
 
 export default BookCategory;

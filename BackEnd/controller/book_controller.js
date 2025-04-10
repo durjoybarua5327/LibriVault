@@ -1,13 +1,14 @@
-import BookCategory from "../model/booksmodel";
+import BookCategory from "../model/booksmodel.js";
 
 
 export const getBook= async (req, res)=>{
     try {
         const Books= await BookCategory.find()
-        res.status(100).json(Books)
+        res.status(200).json(Books)
 
     } catch ( error) {
         console.log("Error",error)
-        res.status(500).json(Books)
+        res.status(500).json({ error: "Internal Server Error" });
+
     }
 }

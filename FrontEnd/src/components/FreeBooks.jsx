@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function FreeBooks() {
-  const [categories, setCategories] = useState([]);
+  const [books, setbooks] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const getbooks = async () => {
       try {
-        const response = await fetch('/booksdata.json');
-        const data = await response.json();
-        const nonPremiumCategories = data.filter(category => !category.isPremium);
-        setCategories(nonPremiumCategories);
+        const response = await axios.get('http://localhost:3000/book');
+        const data = response.data;
+        setbooks(data);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
       } finally {
@@ -23,10 +23,10 @@ function FreeBooks() {
       }
     };
 
-    fetchCategories();
+    getbooks();
   }, []);
 
-  const visibleCategories = showAll ? categories : categories.slice(0, 8);
+  const visibleCategories = showAll ? books : books.slice(0, 8);
 
   const handleCategoryClick = (categoryName) => {
     navigate(`/${encodeURIComponent(categoryName)}`);
@@ -61,7 +61,7 @@ function FreeBooks() {
         ))}
       </div>
 
-      {categories.length > 8 && (
+      {books.length > 8 && (
         <div className="text-center mt-4">
           <button
             onClick={() => setShowAll(!showAll)}

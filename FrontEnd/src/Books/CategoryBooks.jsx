@@ -11,7 +11,7 @@ function CategoryBooks() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('/booksdata.json');
+        const response = await fetch('http://localhost:3000/book');
         const categories = await response.json();
         const selectedCategory = categories.find(
           category => category.name.toLowerCase() === decodeURIComponent(categoryName).toLowerCase()
