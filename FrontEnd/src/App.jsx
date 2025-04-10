@@ -14,7 +14,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/About" element={<About />} />
         <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/category/:categoryName" element={<CategoryBooks />} />
+        <Route path="/:categoryName" element={<CategoryBooks />} />
 
       </Routes>
     </Router>

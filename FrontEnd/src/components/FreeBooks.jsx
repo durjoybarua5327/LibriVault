@@ -21,7 +21,7 @@ function FreeBooks() {
   const visibleCategories = showAll ? bookscategory : bookscategory.slice(0, 8);
 
   const handleCategoryClick = (categoryName) => {
-    navigate(`/category/${encodeURIComponent(categoryName)}`);
+    navigate(`/${encodeURIComponent(categoryName)}`);
   };
 
   return (
