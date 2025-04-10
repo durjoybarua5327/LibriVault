@@ -1,40 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+
 function FreeBooks() {
+  const [categories, setCategories] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const bookscategory = [
-    { name: 'Body, Mind & Spirit', src: './src/pictures/BodyMindSpirit.jpg' },
-    { name: 'Business', src: './src/pictures/business.jpg' },
-    { name: 'Computer Science', src: './src/pictures/computer.jpg' },
-    { name: 'Health & Fitness', src: './src/pictures/health_fitness.webp' },
-    { name: 'Religion', src: './src/pictures/religion.webp' },
-    { name: 'Science', src: './src/pictures/science.webp' },
-    { name: "Children's Fiction", src: './src/pictures/children_fiction.jpg' },
-    { name: 'Fantasy', src: './src/pictures/Fantasy_World.webp' },
-    { name: 'Romance', src: './src/pictures/romance.jpg' },
-    { name: 'Science Fiction', src: './src/pictures/science_fiction.jpeg' },
-    { name: 'Thrillers', src: './src/pictures/thriller.jpeg' },
-  ];
-  const visibleCategories = showAll ? bookscategory : bookscategory.slice(0, 8);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/booksdata.json');
+        const data = await response.json();
+        const nonPremiumCategories = data.filter(category => !category.isPremium);
+        setCategories(nonPremiumCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const visibleCategories = showAll ? categories : categories.slice(0, 8);
 
   const handleCategoryClick = (categoryName) => {
     navigate(`/${encodeURIComponent(categoryName)}`);
   };
+
+  if (loading) {
+    return <div className="text-center py-12">Loading categories...</div>;
+  }
 
   return (
     <div className="mx-10">
       <div className="text-3xl">
         <h1>Freebooks Category</h1>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
         {visibleCategories.map((category, index) => (
           <div
             key={index}
             className="dark:bg-[#3e3e3e] dark:hover:bg-[#797878] bg-white shadow-md rounded-md p-4 cursor-pointer transform transition-all ease-in-out hover:bg-blue-200 hover:scale-105 duration-300"
-            onClick={() => handleCategoryClick(category.name)} 
+            onClick={() => handleCategoryClick(category.name)}
           >
             <div className="overflow-hidden h-60">
               <img
@@ -48,7 +61,7 @@ function FreeBooks() {
         ))}
       </div>
 
-      {bookscategory.length > 8 && (
+      {categories.length > 8 && (
         <div className="text-center mt-4">
           <button
             onClick={() => setShowAll(!showAll)}

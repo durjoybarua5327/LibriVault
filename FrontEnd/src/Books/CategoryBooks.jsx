@@ -1,70 +1,39 @@
-// In CategoryBooks.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { useEffect } from 'react';
-
-
-const allBooks = [
-  {
-    id: 1,
-    title: 'The Psychology of Money',
-    author: 'Morgan Housel',
-    category: 'Business',
-    cover: 'https://m.media-amazon.com/images/I/71g2ednj0JL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#',
-    
-  },
-  {
-    id: 2,
-    title: 'Atomic Habits',
-    author: 'James Clear',
-    category: 'Health & Fitness',
-    cover: 'https://m.media-amazon.com/images/I/91bYsX41DVL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'Deep Work',
-    author: 'Cal Newport',
-    category: 'Business',
-    cover: 'https://m.media-amazon.com/images/I/71m+Qtq+HUL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#'
-  },
-  {
-    id: 4,
-    title: 'The 48 Laws of Power',
-    author: 'Robert Greene',
-    category: 'Business',
-    cover: 'https://m.media-amazon.com/images/I/71aG+xDKSYL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#',
-  },
-  {
-    id: 5,
-    title: 'The Power of Now',
-    author: 'Eckhart Tolle',
-    category: 'Body, Mind & Spirit',
-    cover: 'https://m.media-amazon.com/images/I/71TZn3Zq5sL._AC_UF1000,1000_QL80_.jpg',
-    pdfUrl: '#'
-  },
-  // Add more books with appropriate categories
-];
 
 function CategoryBooks() {
   const { categoryName } = useParams();
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch('/booksdata.json');
+        const categories = await response.json();
+        const selectedCategory = categories.find(
+          category => category.name.toLowerCase() === decodeURIComponent(categoryName).toLowerCase()
+        );
+        setBooks(selectedCategory?.books || []);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
   }, [categoryName]);
-  
-  const books = allBooks.filter(book => 
-    book.category.toLowerCase() === categoryName.toLowerCase()
-  );
+
+  if (loading) {
+    return <div className="text-center py-12">Loading books...</div>;
+  }
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 dark:bg-black dark:text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -78,7 +47,7 @@ function CategoryBooks() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
             {books.map((book) => (
-              <div key={book.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-[#414040] ">
+              <div key={book.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:bg-blue-100 dark:bg-[#242424] cursor-pointer transform transition-all ease-in-out hover:scale-105 duration-300 dark:hover:bg-[#555555]">
                 <div className="h-48 overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
@@ -89,7 +58,7 @@ function CategoryBooks() {
                 <div className="p-4 ">
                   <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 dark:text-[#fafafa]">{book.title}</h3>
                   <p className="mt-1 text-sm text-gray-600 dark:text-white">by {book.author}</p>
-                  
+
                   <div className="mt-4">
                     <a
                       href={book.pdfUrl}
@@ -113,7 +82,7 @@ function CategoryBooks() {
           )}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

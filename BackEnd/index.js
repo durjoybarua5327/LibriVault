@@ -13,6 +13,8 @@ try {
 } catch (error) {
     console.log("Error", error)
 }
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

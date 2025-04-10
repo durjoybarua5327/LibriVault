@@ -1,0 +1,336 @@
+[
+  {
+    "name": "Body, Mind & Spirit",
+    "src": "./src/pictures/BodyMindSpirit.jpg",
+    "books": [
+      {
+        "id": 1,
+        "title": "The Power of Now",
+        "author": "Eckhart Tolle",
+        "cover": "https://m.media-amazon.com/images/I/71TZn3Zq5sL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 2,
+        "title": "The Untethered Soul",
+        "author": "Michael A. Singer",
+        "cover": "https://m.media-amazon.com/images/I/81WDc1kZWIL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Business",
+    "src": "./src/pictures/business.jpg",
+    "books": [
+      {
+        "id": 3,
+        "title": "The Psychology of Money",
+        "author": "Morgan Housel",
+        "cover": "https://m.media-amazon.com/images/I/71g2ednj0JL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 4,
+        "title": "Deep Work",
+        "author": "Cal Newport",
+        "cover": "https://m.media-amazon.com/images/I/71m+Qtq+HUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 5,
+        "title": "Good to Great",
+        "author": "Jim Collins",
+        "cover": "https://m.media-amazon.com/images/I/71bGZL-lrLL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Science Fiction",
+    "src": "./src/pictures/science_fiction.jpeg",
+    "books": [
+      {
+        "id": 6,
+        "title": "Dune",
+        "author": "Frank Herbert",
+        "cover": "https://m.media-amazon.com/images/I/81ym3QUd3KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 7,
+        "title": "Project Hail Mary",
+        "author": "Andy Weir",
+        "cover": "https://m.media-amazon.com/images/I/81Kc8OsbDxL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Romance",
+    "src": "./src/pictures/romance.jpg",
+    "books": [
+      {
+        "id": 8,
+        "title": "The Notebook",
+        "author": "Nicholas Sparks",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 9,
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "cover": "https://m.media-amazon.com/images/I/71Q1tPupKjL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      }
+    ]
+  },
+  {
+    "name": "Technology",
+    "src": "./src/pictures/technology.jpg",
+    "books": [
+      {
+        "id": 10,
+        "title": "The Innovators",
+        "author": "Walter Isaacson",
+        "cover": "https://m.media-amazon.com/images/I/91B4d8Wn3IL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 11,
+        "title": "Clean Code",
+        "author": "Robert C. Martin",
+        "cover": "https://m.media-amazon.com/images/I/41xShlnTZTL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Self-Help",
+    "src": "./src/pictures/selfhelp.jpg",
+    "books": [
+      {
+        "id": 12,
+        "title": "The 7 Habits of Highly Effective People",
+        "author": "Stephen R. Covey",
+        "cover": "https://m.media-amazon.com/images/I/91YzwEhPwBS._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 13,
+        "title": "How to Win Friends and Influence People",
+        "author": "Dale Carnegie",
+        "cover": "https://m.media-amazon.com/images/I/71yqxRH-wfL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      }
+    ]
+  },
+  {
+    "name": "Mystery & Thriller",
+    "src": "./src/pictures/thriller.jpeg",
+    "books": [
+      {
+        "id": 14,
+        "title": "The Silent Patient",
+        "author": "Alex Michaelides",
+        "cover": "https://m.media-amazon.com/images/I/71X3O0WkP6L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 15,
+        "title": "Gone Girl",
+        "author": "Gillian Flynn",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      }
+    ]
+  },
+  {
+    "name": "Biography",
+    "src": "./src/pictures/biography.jpg",
+    "books": [
+      {
+        "id": 16,
+        "title": "Steve Jobs",
+        "author": "Walter Isaacson",
+        "cover": "https://m.media-amazon.com/images/I/81VStYnDGrL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 17,
+        "title": "Becoming",
+        "author": "Michelle Obama",
+        "cover": "https://m.media-amazon.com/images/I/81h2gWPTYJL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Cookbooks",
+    "src": "./src/pictures/cookbook.jpg",
+    "books": [
+      {
+        "id": 18,
+        "title": "Salt, Fat, Acid, Heat",
+        "author": "Samin Nosrat",
+        "cover": "https://m.media-amazon.com/images/I/91Q5dCjc2KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 19,
+        "title": "The Joy of Cooking",
+        "author": "Irma S. Rombauer",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 20,
+        "title": "Mastering the Art of French Cooking",
+        "author": "Julia Child",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Parenting",
+    "src": "./src/pictures/parenting.jpg",
+    "books": [
+      {
+        "id": 21,
+        "title": "The Whole-Brain Child",
+        "author": "Daniel J. Siegel",
+        "cover": "https://m.media-amazon.com/images/I/91Q5dCjc2KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 22,
+        "title": "How to Talk So Kids Will Listen",
+        "author": "Adele Faber",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 23,
+        "title": "Bringing Up Bébé",
+        "author": "Pamela Druckerman",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Religion & Spirituality",
+    "src": "./src/pictures/religion_sprituality.jpg",
+    "books": [
+      {
+        "id": 24,
+        "title": "The Bible",
+        "author": "Various Authors",
+        "cover": "https://m.media-amazon.com/images/I/91Q5dCjc2KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 25,
+        "title": "The Quran",
+        "author": "Various Authors",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 26,
+        "title": "The Bhagavad Gita",
+        "author": "Various Authors",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      }
+    ]
+  },
+  {
+    "name": "Politics",
+    "src": "./src/pictures/politics.png",
+    "books": [
+      {
+        "id": 27,
+        "title": "The Art of War",
+        "author": "Sun Tzu",
+        "cover": "https://m.media-amazon.com/images/I/91Q5dCjc2KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 28,
+        "title": "The Prince",
+        "author": "Niccolò Machiavelli",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 29,
+        "title": "The Road to Serfdom",
+        "author": "Friedrich Hayek",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      }
+    ]
+  },
+  {
+    "name": "Humor",
+    "src": "./src/pictures/humor.jpeg",
+    "books": [
+      {
+        "id": 30,
+        "title": "Bossypants",
+        "author": "Tina Fey",
+        "cover": "https://m.media-amazon.com/images/I/91Q5dCjc2KL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      },
+      {
+        "id": 31,
+        "title": "Is Everyone Hanging Out Without Me?",
+        "author": "Mindy Kaling",
+        "cover": "https://m.media-amazon.com/images/I/71X8Oec6M8L._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": false
+      },
+      {
+        "id": 32,
+        "title": "Hyperbole and a Half",
+        "author": "Allie Brosh",
+        "cover": "https://m.media-amazon.com/images/I/81I8b+E+uUL._AC_UF1000,1000_QL80_.jpg",
+        "pdfUrl": "#",
+        "isPremium": true
+      }
+    ]
+  }
+]
