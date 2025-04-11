@@ -29,7 +29,7 @@ function FreeBooks() {
   const visibleCategories = showAll ? books : books.slice(0, 8);
 
   const handleCategoryClick = (categoryName) => {
-    navigate(`/${encodeURIComponent(categoryName)}`);
+    navigate(`/free/${encodeURIComponent(categoryName)}`);
   };
 
   if (loading) {

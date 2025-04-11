@@ -26,7 +26,7 @@ function Premium() {
   }, []);
 
   const handleCategoryClick = (categoryName) => {
-    navigate(`/${encodeURIComponent(categoryName)}`);
+    navigate(`/premium/${encodeURIComponent(categoryName)}`);
   };
 
   if (loading) {
@@ -72,14 +72,6 @@ function Premium() {
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 transition-colors">
                     {category.name}
                   </h3>
-                  <div className="mt-2 flex items-center justify-between">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {category.author || 'Classic Edition'}
-                    </span>
-                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm rounded-full">
-                      Premium
-                    </span>
-                  </div>
                 </div>
 
                 <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-blue-200/30 transition-all duration-300 pointer-events-none" />
