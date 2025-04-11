@@ -46,9 +46,7 @@ function Premium() {
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Premium <span className="text-blue-600">Collection</span>
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Discover our curated selection of exclusive books
-            </p>
+            
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
