@@ -91,11 +91,7 @@ function SignUp() {
                             className="dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition duration-300">
                             Sign Up
                         </button>
-                        <p className="text-sm">
-                            Already have an account?
-                            <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="ml-1 text-blue-500 cursor-pointer hover:underline">Login</button>
-                            <Login/>
-                        </p>
+                        
                     </div>
                 </form>
             </div>
