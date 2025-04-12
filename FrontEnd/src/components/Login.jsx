@@ -33,7 +33,7 @@ function Login() {
                                 {...register("email", { required: "Email is required" })}
                             />
                             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                        </div>
+                        </div> 
 
                         <div className="flex flex-col">
                             <label className="text-sm font-semibold mb-1">Password</label>
