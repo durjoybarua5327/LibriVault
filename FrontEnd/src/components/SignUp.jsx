@@ -47,13 +47,13 @@ function SignUp() {
             const response = await axios.post("http://localhost:3000/user/SignUp", userinfo);
             if (response.data) {
                 localStorage.setItem("Users", JSON.stringify(response.data.user));
-                toast.success("Signup successful ✅");
+                toast.success("Signup successful");
                 navigate(-1);
             }
         } catch (err) {
             console.error('Error:', err);
             if (err.response) {
-                toast.error(err.response.data.message || 'Signup failed ❌');
+                toast.error(err.response.data.message || 'Signup failed');
             } else {
                 toast.error('Network error. Please try again.');
             }
