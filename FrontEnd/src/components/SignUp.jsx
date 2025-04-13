@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 
 function SignUp() {
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+
     const {
         register,
         handleSubmit,
@@ -16,18 +19,21 @@ function SignUp() {
             email: data.email,
             password: data.password
         };
-        
+
         try {
             const response = await axios.post("http://localhost:3000/user/SignUp", userinfo);
             if (response.data) {
-                alert("Signup successful");
+                setMessage("Signup successful");
+                setMessageType("success");
             }
         } catch (err) {
             console.error('Error:', err);
             if (err.response) {
-                alert(err.response.data.message || 'Signup failed');
+                setMessage(err.response.data.message || 'Signup failed');
+                setMessageType("error");
             } else {
-                alert('Network error. Please try again.');
+                setMessage('Network error. Please try again.');
+                setMessageType("error");
             }
         }
     };
@@ -67,7 +73,7 @@ function SignUp() {
                         />
                         {errors.fullname && <p className="text-red-500 text-xs mt-1">{errors.fullname.message}</p>}
                     </div>
-                    
+
                     <div className="flex flex-col">
                         <label className="text-sm font-semibold mb-1">Email</label>
                         <input
@@ -109,6 +115,11 @@ function SignUp() {
                         />
                         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                     </div>
+                    {message && (
+                        <div className={`text-sm font-medium mb-2 ${messageType === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                            {message}
+                        </div>
+                    )}
 
                     <div className="flex justify-between items-center mt-4">
                         <button
@@ -116,15 +127,6 @@ function SignUp() {
                             className="dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition duration-300 w-full">
                             Sign Up
                         </button>
-                    </div>
-                    
-                    <div className="text-center mt-4">
-                        <p className="text-sm">
-                            Already have an account?{' '}
-                            <Link to="/login" className="text-blue-500 hover:underline">
-                                Log in
-                            </Link>
-                        </p>
                     </div>
                 </form>
             </div>
