@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import toast from 'react-hot-toast';
+import { useNavigate } from "react-router";
 
 function SignUp() {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -46,12 +48,8 @@ function SignUp() {
             if (response.data) {
                 localStorage.setItem("Users", JSON.stringify(response.data.user));
                 toast.success("Signup successful ✅");
-                setTimeout(() => {
-                    window.location.reload();
-                  }, 2000);
-                
+                navigate(-1);
             }
-            
         } catch (err) {
             console.error('Error:', err);
             if (err.response) {
@@ -92,7 +90,6 @@ function SignUp() {
                         {errors.fullname && <p className="text-red-500 text-xs mt-1">{errors.fullname.message}</p>}
                     </div>
 
-                    {/* Email */}
                     <div className="flex flex-col">
                         <label className="text-sm font-semibold mb-1">Email</label>
                         <input
@@ -109,8 +106,6 @@ function SignUp() {
                         />
                         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
-
-                    {/* Password */}
                     <div className="flex flex-col">
                         <label className="text-sm font-semibold mb-1">Password</label>
                         <input
@@ -130,6 +125,7 @@ function SignUp() {
                         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                     </div>
 
+                    {/* Submit Button */}
                     <div className="flex justify-between items-center mt-4">
                         <button
                             type="submit"
@@ -154,6 +150,12 @@ function SignUp() {
                         </button>
                     </div>
                 </form>
+                <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+                    Already have an account?{' '}
+                    <Link to="/" className="text-blue-600 hover:underline dark:text-blue-400">
+                        Login
+                    </Link>
+                </p>
             </div>
         </div>
     );

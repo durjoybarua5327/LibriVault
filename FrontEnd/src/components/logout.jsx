@@ -15,7 +15,7 @@ function Logout() {
             toast.success("Logout successfully!")
             setTimeout(() => {
                 window.location.reload();
-              }, 2000);
+              }, 1000);
         } catch (error) {
             toast.error("Logout failed:", error.message);
         }
