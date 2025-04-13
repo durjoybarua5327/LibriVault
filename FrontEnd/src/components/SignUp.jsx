@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import toast from 'react-hot-toast';
 
 function SignUp() {
-    const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
-
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        formState: { errors, isSubmitting }
     } = useForm();
+    
+    const [countdown, setCountdown] = useState(0);
+    const [isCounting, setIsCounting] = useState(false);
+
+    useEffect(() => {
+        let timer;
+        if (isCounting && countdown > 0) {
+            timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+        } else if (countdown === 0) {
+            setIsCounting(false);
+        }
+        return () => clearTimeout(timer);
+    }, [countdown, isCounting]);
 
     const onSubmit = async (data) => {
+        if (isCounting) {
+            toast.error(`Please wait ${countdown} seconds before submitting`);
+            return;
+        }
+
+        setCountdown(4);
+        setIsCounting(true);
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
         const userinfo = {
             fullname: data.fullname,
             email: data.email,
@@ -23,17 +44,20 @@ function SignUp() {
         try {
             const response = await axios.post("http://localhost:3000/user/SignUp", userinfo);
             if (response.data) {
-                setMessage("Signup successful");
-                setMessageType("success");
+                localStorage.setItem("Users", JSON.stringify(response.data.user));
+                toast.success("Signup successful ✅");
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 2000);
+                
             }
+            
         } catch (err) {
             console.error('Error:', err);
             if (err.response) {
-                setMessage(err.response.data.message || 'Signup failed');
-                setMessageType("error");
+                toast.error(err.response.data.message || 'Signup failed ❌');
             } else {
-                setMessage('Network error. Please try again.');
-                setMessageType("error");
+                toast.error('Network error. Please try again.');
             }
         }
     };
@@ -57,14 +81,8 @@ function SignUp() {
                             className="dark:bg-[#272626] dark:text-white w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
                             {...register("fullname", {
                                 required: "Full name is required",
-                                minLength: {
-                                    value: 3,
-                                    message: "Full name must be at least 3 characters"
-                                },
-                                maxLength: {
-                                    value: 40,
-                                    message: "Full name cannot exceed 40 characters"
-                                },
+                                minLength: { value: 3, message: "Full name must be at least 3 characters" },
+                                maxLength: { value: 40, message: "Full name cannot exceed 40 characters" },
                                 pattern: {
                                     value: /^[A-Za-z]+(?:\s[A-Za-z]+)+$/,
                                     message: "Enter at least first and last name (letters only)"
@@ -74,6 +92,7 @@ function SignUp() {
                         {errors.fullname && <p className="text-red-500 text-xs mt-1">{errors.fullname.message}</p>}
                     </div>
 
+                    {/* Email */}
                     <div className="flex flex-col">
                         <label className="text-sm font-semibold mb-1">Email</label>
                         <input
@@ -91,6 +110,7 @@ function SignUp() {
                         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
 
+                    {/* Password */}
                     <div className="flex flex-col">
                         <label className="text-sm font-semibold mb-1">Password</label>
                         <input
@@ -99,14 +119,8 @@ function SignUp() {
                             className="dark:bg-[#272626] dark:text-white w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: {
-                                    value: 6,
-                                    message: "Password must be at least 6 characters"
-                                },
-                                maxLength: {
-                                    value: 20,
-                                    message: "Password must be within 20 characters"
-                                },
+                                minLength: { value: 6, message: "Password must be at least 6 characters" },
+                                maxLength: { value: 20, message: "Password must be within 20 characters" },
                                 pattern: {
                                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
                                     message: "Password must contain at least one uppercase letter, one lowercase letter, and one number"
@@ -115,17 +129,28 @@ function SignUp() {
                         />
                         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                     </div>
-                    {message && (
-                        <div className={`text-sm font-medium mb-2 ${messageType === 'success' ? 'text-green-600' : 'text-red-500'}`}>
-                            {message}
-                        </div>
-                    )}
 
                     <div className="flex justify-between items-center mt-4">
                         <button
                             type="submit"
-                            className="dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition duration-300 w-full">
-                            Sign Up
+                            disabled={isSubmitting || isCounting}
+                            className={`dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg transition duration-300 w-full flex justify-center items-center gap-2 ${
+                                (isSubmitting || isCounting) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'
+                            }`}
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <svg className="animate-spin h-5 w-5 text-white dark:text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Submitting...
+                                </>
+                            ) : isCounting ? (
+                                `Please wait ${countdown}s...`
+                            ) : (
+                                'Sign Up'
+                            )}
                         </button>
                     </div>
                 </form>

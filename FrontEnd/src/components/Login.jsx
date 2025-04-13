@@ -1,46 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function Login() {
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        formState: { errors, isSubmitting }
     } = useForm();
+    
+    const [countdown, setCountdown] = useState(0);
+    const [isCounting, setIsCounting] = useState(false);
 
-    const [submitStatus, setSubmitStatus] = useState({
-        message: '',
-        isError: false,
-        isSuccess: false
-    });
+    useEffect(() => {
+        let timer;
+        if (isCounting && countdown > 0) {
+            timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+        } else if (countdown === 0) {
+            setIsCounting(false);
+        }
+        return () => clearTimeout(timer);
+    }, [countdown, isCounting]);
 
     const onSubmit = async (data) => {
+        if (isCounting) {
+            toast.error(`Please wait ${countdown} seconds before submitting`);
+            return;
+        }
+
+        setCountdown(2);
+        setIsCounting(true);
+        
+        // Wait for countdown to complete
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
         try {
             const response = await axios.post("http://localhost:3000/user/login", data);
             if (response.data) {
-                setSubmitStatus({
-                    message: "Login successful!",
-                    isError: false,
-                    isSuccess: true
-                });
+                localStorage.setItem("Users", JSON.stringify(response.data.user));
+                toast.success("Login successful!");
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 2000);
+
                 
             }
         } catch (err) {
             console.error('Error:', err);
             if (err.response) {
-                setSubmitStatus({
-                    message: err.response.data.message || 'Login failed',
-                    isError: true,
-                    isSuccess: false
-                });
+                toast.error(err.response.data.message || 'Login failed');
             } else {
-                setSubmitStatus({
-                    message: 'Network error. Please try again.',
-                    isError: true,
-                    isSuccess: false
-                });
+                toast.error('Network error. Please try again.');
             }
         }
     };
@@ -89,18 +101,27 @@ function Login() {
                             {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>}
                         </div>
 
-                        {/* Status message display */}
-                        {submitStatus.message && (
-                            <div className={`p-3 rounded-lg ${submitStatus.isError ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200' : 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'}`}>
-                                {submitStatus.message}
-                            </div>
-                        )}
-
                         <div className="flex justify-between items-center mt-4">
                             <button 
                                 type="submit"
-                                className="dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition duration-300 w-full">
-                                Login
+                                disabled={isSubmitting || isCounting}
+                                className={`dark:bg-white dark:hover:bg-gray-300 dark:text-black bg-black text-white px-5 py-2 rounded-lg transition duration-300 w-full flex justify-center items-center gap-2 ${
+                                    (isSubmitting || isCounting) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'
+                                }`}
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <svg className="animate-spin h-5 w-5 text-white dark:text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Logging....
+                                    </>
+                                ) : isCounting ? (
+                                    `Please wait ${countdown}s...`
+                                ) : (
+                                    'Login'
+                                )}
                             </button>
                         </div>
 
