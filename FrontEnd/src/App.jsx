@@ -10,7 +10,7 @@ import { useAuth } from "./Context/Authprovider";
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [authUser , setauthUser] = useAuth()
+  const [authUser ] = useAuth()
     console.log(authUser)
   return (
     <Router>
