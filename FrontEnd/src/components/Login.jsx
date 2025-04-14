@@ -32,7 +32,7 @@ function Login() {
 
         setCountdown(2);
         setIsCounting(true);
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 2000));            
 
         try {
             const response = await axios.post("http://localhost:3000/user/login", data);
